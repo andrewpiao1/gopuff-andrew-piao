@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Cart from './components/Cart'
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <div className="container">
         <div className='left-block'>Description</div>
         <div className="right-block">Cart</div>
+        <Cart />
       </div>
     </div>
   );

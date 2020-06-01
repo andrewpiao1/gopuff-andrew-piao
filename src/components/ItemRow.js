@@ -14,7 +14,7 @@ export default function ItemRow({ productsList, handleQuantityChange, handleRemo
                     <div className="quantity">
                         <input type='number' 
                         value={quantity}
-                        min={0} 
+                        min={1} 
                         onChange={ e =>handleQuantityChange(e, product.id)}/>
                     </div>
                     <div className="remove">
@@ -29,9 +29,11 @@ export default function ItemRow({ productsList, handleQuantityChange, handleRemo
 
 const getPrice = (price, credit_coupon_price) => {
     return (price <= credit_coupon_price) 
-        ? <div className='price'>${price}</div>
+        ? <div className='price'>
+            <div className="price-tag">${price}</div>
+            </div>
         : <div className='price'>
-            <div style={{textDecoration:'line-through', color: 'crimson'}}>${price}</div>
-            <div>${credit_coupon_price}</div>
+            <div className="price-tag" style={{textDecoration:'line-through', color: 'crimson', opacity: '90%'}}>${price}</div>
+            <div className="price-tag" style={{color:'green'}}>${credit_coupon_price}</div>
         </div>
 }

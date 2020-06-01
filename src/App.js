@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Cart from './components/Cart'
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <div className="title">
@@ -10,9 +10,6 @@ function App() {
       <div>{'Shopping Cart'}</div>
       </div>
       <Cart />
-      
     </div>
   );
 }
-
-export default App;

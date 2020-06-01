@@ -62,7 +62,6 @@ export default class Cart extends Component {
         this.setState({productsList: newProductsList})
     }
     
-
 	render() {
         const { productsList } = this.state;
 		return (

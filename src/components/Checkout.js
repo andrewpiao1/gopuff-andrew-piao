@@ -19,9 +19,9 @@ export default function Checkout(props) {
                 <div className='checkout-label'>Shipping</div>
                 <div>${shipping.toFixed(2)}</div>
             </div>
-            <div className='checkout-row'>
+            <div className='checkout-row' style={{fontWeight: 500}}>
                 <div className='checkout-label'>Grand Total</div>
-                <div style={{fontWeight: 500}}>{grandTotal.toFixed(2)}</div>
+                <div>${grandTotal.toFixed(2)}</div>
             </div>
             <button className="checkout">Checkout</button>
         </div>

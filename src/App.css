@@ -3,16 +3,27 @@
 
 .App {
   text-align: center;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 14px;
   margin: 15px 30px;
 }
 .title{
   font-size: 25px;
-  text-align: left;
+  text-align: center;
   padding: 10px 20px;
+  background-color: rgb(230, 244, 255);
+  color: black;
+  font-weight: 300;
+  height: 30px;
+  display: flex;
 }
+
+i{
+  padding-top: 2px; 
+  padding-right: 5px; 
+}
+
 .cart-container{
   min-height: 200px;
   padding: 0 20px 20px 0;

@@ -18,7 +18,6 @@ export default class Cart extends Component {
         this.handleRemove = this.handleRemove.bind(this)
 	}
 
-
 	componentDidMount() {
         axios.get('https://gopuff-public.s3.amazonaws.com/dev-assignments/product/order.json?fbclid=IwAR2dEMZK5yqhuNDgeC-_QpEZ5PazuwO6Fn0xaxKeUFt6ijjOg0Gafa5DoQc')
         .then((res) => {

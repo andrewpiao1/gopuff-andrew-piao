@@ -9,7 +9,7 @@ export default class ItemRow extends Component {
             </div>
     }
 	render() {
-        const { productsList, handleQuantityChange} = this.props;
+        const { productsList, handleQuantityChange, handleRemove} = this.props;
 
 		return (
             
@@ -27,10 +27,12 @@ export default class ItemRow extends Component {
                             <input type='number' 
                             value={quantity}
                             min={0} 
-                            onChange={(e)=>handleQuantityChange(e, product.id)}/>
+                            onChange={ e =>handleQuantityChange(e, product.id)}/>
                         </div>
-                        <div className="remove">remove</div>
-                        <div className="total">{credit_coupon_price*quantity}</div>
+                        <div className="remove">
+                            <button className='remove-product' onClick={ e => handleRemove(e, product.id)}>Remove</button>
+                        </div>
+                        <div className="total">${credit_coupon_price*quantity}</div>
                     </div>
                 )
             })

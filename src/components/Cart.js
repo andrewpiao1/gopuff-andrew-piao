@@ -13,6 +13,7 @@ export default class Cart extends Component {
 			cartTotal: 0
         };
         this.handleQuantityChange = this.handleQuantityChange.bind(this)
+        this.handleRemove = this.handleRemove.bind(this)
 	}
 
 
@@ -48,13 +49,19 @@ export default class Cart extends Component {
 			})
 			.catch((e) => console.log(e));
     }
-    
+
     handleQuantityChange(e, id){
         const newProductsList = [...this.state.productsList]
         const item = newProductsList.find(product => product.id === id)
         item.quantity = e.target.value
         this.setState({productsList: newProductsList})
     }
+
+    handleRemove(e, id){
+        const newProductsList = this.state.productsList.filter(product => product.id !== id)
+        this.setState({productsList: newProductsList})
+    }
+    
 
 	render() {
         const { productsList } = this.state;
@@ -69,7 +76,10 @@ export default class Cart extends Component {
                         <div className="total">Total</div>
                     </div>  
 				{productsList.length && 
-                    <ItemRow productsList={productsList} handleQuantityChange={this.handleQuantityChange}/>}
+                    <ItemRow productsList={productsList} 
+                    handleQuantityChange={this.handleQuantityChange}
+                    handleRemove={this.handleRemove}
+                    />}
 				<button onClick={() => this.getInitCart()}>CLICK ME</button>
 			</div>
 		);

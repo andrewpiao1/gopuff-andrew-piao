@@ -3,29 +3,54 @@
 
 .App {
   text-align: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Helvetica', sans-serif;
   font-weight: 300;
-  font-size: 15px;
+  font-size: 12px;
 }
-
+.title{
+  font-size: 25px;
+  text-align: left;
+  padding-left: 20px;
+}
 .cart-container{
-  background:lightcyan;
+  /* background:lightcyan; */
   min-height: 200px;
+  padding: 0 20px 20px 0;
 }
 
 .item-row{
-  border: 1px solid rgb(180, 180, 180);
+  /* border: 1px solid rgb(180, 180, 180); */
+  height: 80px;
   display: flex;
   justify-content: space-between;
+  padding: 10px 5px;
+  border-bottom: 1px solid rgb(230, 230, 230);
+}
+.row{
+  height: 20px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid lightgrey;
+  font-weight: 300;
+  color: rgb(148, 148, 148);
+  
 }
 .image{
   width: 15%;
+  border: 1px solid rgb(180, 180, 180);
 }
+.image img{
+  height:100%;
+}
+
 .name{
-  width: 35%;  
+  width: 30%;
+  font-weight: 400;
+  text-align: left;
+  padding: 0 10px;  
+  border: 1px solid rgb(180, 180, 180);
 }
 .price{
-  width: 15%;  
+  width: 10%;  
   display: block;
   border: 1px solid rgb(196, 196, 196);
   
@@ -33,10 +58,15 @@
 .quantity{
   width: 10%;
 }
+  input{
+    width: 40%;
+  }
 .remove{
   border: 1px solid rgb(214, 214, 214);
+  width: 10%
 }
-.subtotal{
-  width: 20%;  
+.total{
+  width: 15%;  
   border: 1px solid rgb(221, 221, 221);
+  text-align: right;
 }

@@ -11,8 +11,10 @@ export default class Cart extends Component {
 			paymentMethod: '',
 			userData: {},
 			cartTotal: 0
-		};
+        };
+        this.handleQuantityChange = this.handleQuantityChange.bind(this)
 	}
+
 
 	componentDidMount() {
         axios.get('https://gopuff-public.s3.amazonaws.com/dev-assignments/product/order.json?fbclid=IwAR2dEMZK5yqhuNDgeC-_QpEZ5PazuwO6Fn0xaxKeUFt6ijjOg0Gafa5DoQc')
@@ -45,24 +47,29 @@ export default class Cart extends Component {
 				});
 			})
 			.catch((e) => console.log(e));
-	}
+    }
+    
+    handleQuantityChange(e, id){
+        const newProductsList = [...this.state.productsList]
+        const item = newProductsList.find(product => product.id === id)
+        item.quantity = e.target.value
+        this.setState({productsList: newProductsList})
+    }
 
 	render() {
         const { productsList } = this.state;
-        // productsList.length && console.log('[productsList]', productsList)
 		return (
 			<div className="cart-container">
-                <div className="item-row">
-                    <div className="image"></div>
-                    <div className="name">Name</div>
-                    <div className="price">Price</div>
-                    <div className="quantity">Quantity</div>
-                    <div className="remove">Remove</div>
-                    <div className="subtotal">Subtotal</div>
-                </div>
-				{productsList.length && <ItemRow productsList={productsList} />}
-				{/* {productsList.length && <ItemRow name={name} quantity={quanity} price={price} img={img} description={description}/>} */}
-
+                    <div className="item-row row">
+                        <div className="image"></div>
+                        <div className="name">Name</div>
+                       <div className="price">Price</div>
+                        <div className="quantity">Quantity</div>
+                        <div className="remove">Remove</div>
+                        <div className="total">Total</div>
+                    </div>  
+				{productsList.length && 
+                    <ItemRow productsList={productsList} handleQuantityChange={this.handleQuantityChange}/>}
 				<button onClick={() => this.getInitCart()}>CLICK ME</button>
 			</div>
 		);

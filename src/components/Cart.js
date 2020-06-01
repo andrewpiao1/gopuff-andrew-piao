@@ -17,45 +17,49 @@ export default class Cart extends Component {
 	componentDidMount() {
         axios.get('https://gopuff-public.s3.amazonaws.com/dev-assignments/product/order.json?fbclid=IwAR2dEMZK5yqhuNDgeC-_QpEZ5PazuwO6Fn0xaxKeUFt6ijjOg0Gafa5DoQc')
         .then((res) => {
-            this.setState({
-                productsList: res.data.cart.products,
-                postalCode: res.data.postal_code,
-                paymentMethod: res.data.payment_method,
-                userData: res.data.user
-            })
+
             const queryParam = res.data.cart.products.map((product) => product.id).join(',');
-            this.getProductData(queryParam);
+            this.getProductData(queryParam, res.data );
         })
         .catch((e) => console.log(e));
 	}
 
-	getProductData(productIds) {
+	getProductData(productIds, data) {
 		axios.get(`https://prodcat.gopuff.com/api/products?location_id=-1&product_ids=${productIds}`)
 			.then((res) => {
-				console.log(res);
-				const metaData = res.data.products;
-				console.log('metaData', metaData);
+                const metaData = res.data.products
+                console.log('meta', metaData)
+                const products = data.cart.products
 				this.setState((state) => {
-					let newProductData = this.state.productsList;
+					
 					metaData.forEach((productMetaData) => {
-						const matched = newProductData.find(
+						const matched = products.find(
 							(product) => product.product_id === productMetaData.product_id
 						);
-						matched.metaData = productMetaData;
-					});
-					return { productsList: newProductData };
+                        matched.name = productMetaData.name
+                        matched.description = productMetaData.description
+                        matched.image = productMetaData.images[0]['thumb']
+                        
+                    });
+					return { productsList: products };
 				});
 			})
 			.catch((e) => console.log(e));
 	}
 
 	render() {
-		console.log('cartdata: ', this.state);
-
-		const { productsList } = this.state;
-		// Image   quantity  name   price   subt
+        const { productsList } = this.state;
+        // productsList.length && console.log('[productsList]', productsList)
 		return (
-			<div className="right-block">
+			<div className="cart-container">
+                <div className="item-row">
+                    <div className="image"></div>
+                    <div className="name">Name</div>
+                    <div className="price">Price</div>
+                    <div className="quantity">Quantity</div>
+                    <div className="remove">Remove</div>
+                    <div className="subtotal">Subtotal</div>
+                </div>
 				{productsList.length && <ItemRow productsList={productsList} />}
 				{/* {productsList.length && <ItemRow name={name} quantity={quanity} price={price} img={img} description={description}/>} */}
 

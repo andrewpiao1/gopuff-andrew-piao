@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ItemRow from './ItemRow';
+import ItemRow from './ItemRow'
+import CartLabel from './CartLabel'
+import Checkout from './Checkout'
 
 export default class Cart extends Component {
 	constructor(props) {
@@ -31,7 +33,6 @@ export default class Cart extends Component {
 		axios.get(`https://prodcat.gopuff.com/api/products?location_id=-1&product_ids=${productIds}`)
 			.then((res) => {
                 const metaData = res.data.products
-                console.log('meta', metaData)
                 const products = data.cart.products
 				this.setState((state) => {
 					
@@ -66,22 +67,19 @@ export default class Cart extends Component {
 	render() {
         const { productsList } = this.state;
 		return (
-			<div className="cart-container">
-                    <div className="item-row row">
-                        <div className="image"></div>
-                        <div className="name">Name</div>
-                       <div className="price">Price</div>
-                        <div className="quantity">Quantity</div>
-                        <div className="remove">Remove</div>
-                        <div className="total">Total</div>
-                    </div>  
-				{productsList.length && 
-                    <ItemRow productsList={productsList} 
-                    handleQuantityChange={this.handleQuantityChange}
-                    handleRemove={this.handleRemove}
-                    />}
-				<button onClick={() => this.getInitCart()}>CLICK ME</button>
-			</div>
+            <div>
+                <div className="cart-container">
+                    <CartLabel />
+                    {productsList.length && 
+                        <ItemRow productsList={productsList} 
+                        handleQuantityChange={this.handleQuantityChange}
+                        handleRemove={this.handleRemove}
+                        />}
+                    {productsList.length &&
+                        <Checkout productsList={productsList}/>
+                    }
+                </div>
+            </div>
 		);
 	}
 }

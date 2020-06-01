@@ -7,9 +7,8 @@ function App() {
     <div className="App">
       <div className="header">GoPuff Product Aassignment</div>
       <div className="container">
-        <div className='left-block'>Description</div>
-        <div className="right-block">Cart</div>
-        <Cart />
+        <Cart className='left-block'/>
+        <div className='right-block'>Subtotal</div>
       </div>
     </div>
   );
